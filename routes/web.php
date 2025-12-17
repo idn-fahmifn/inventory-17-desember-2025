@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 
 // routing admin
-Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
 
     // route dashboard
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
