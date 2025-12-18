@@ -5,7 +5,11 @@
                 {{ $room->room_name }}
             </h2>
 
-            <form action="" method="post">
+            <form action="{{ route('room.destroy', $room->slug) }}" method="post">
+
+                @csrf
+                @method('delete')
+
                 <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-room')"
                     class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-all duration-300 transform hover:scale-105">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

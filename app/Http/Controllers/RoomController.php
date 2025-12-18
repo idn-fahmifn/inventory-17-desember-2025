@@ -98,8 +98,12 @@ class RoomController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Room $room)
+    public function destroy($param)
     {
-        //
+        $room = Room::where('slug', $param)->firstOrFail();
+        $data = Room::findOrFail($room->id);
+
+        $data->delete();
+        return redirect()->route('room.index')->with('success', 'Room Deleted');
     }
 }

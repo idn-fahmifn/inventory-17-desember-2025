@@ -14,7 +14,7 @@
     <div class="py-12 bg-[#F8FAFC] dark:bg-slate-950 min-h-screen transition-colors duration-500">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            
+
 
             <div
                 class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50 dark:divide-slate-800">
-                            @foreach ($rooms as $room)
+                            @forelse ($rooms as $room)
                                 <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
                                     <td class="px-8 py-6">
                                         <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
@@ -55,7 +55,19 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                    <td class="px-8 py-6 text-center" colspan="3">
+                                        <span
+                                            class="text-sm text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg">
+                                            
+                                            Room Not Found
+
+
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
