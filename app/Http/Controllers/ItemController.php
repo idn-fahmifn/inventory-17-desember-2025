@@ -77,9 +77,13 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Item $item)
+    public function show($param)
     {
-        //
+        $data = Item::where('slug', $param)->firstOrFail();
+        $room = Room::all();
+
+        return view('item.detail', compact('data', 'room'));
+
     }
 
     /**

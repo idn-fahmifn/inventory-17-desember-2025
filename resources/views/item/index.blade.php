@@ -101,7 +101,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="item_name" value="Nama Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_name" name="item_name" type="text" required
+                        <x-text-input id="item_name" name="item_name" type="text" required :value="old('item_name')"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="ex : Ruang Server" />
                         <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
@@ -109,7 +109,7 @@
 
                     <div>
                         <x-input-label for="item_code" value="Kode Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_code" name="item_code" type="text" required
+                        <x-text-input id="item_code" name="item_code" type="text" required :value="old('item_code')"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="KODE-01" />
                         <x-input-error :messages="$errors->get('item_code')" class="mt-2" />
@@ -119,7 +119,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="qty" value="Stok/Qty" class="dark:text-slate-400" />
-                        <x-text-input id="qty" name="qty" type="number" required
+                        <x-text-input id="qty" name="qty" type="number" required :value="old('qty')"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl" />
                         <x-input-error :messages="$errors->get('qty')" class="mt-2" />
                     </div>
@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="">
-                    <x-input-label for="desc" value="Deskripsi Ruangan" required class="dark:text-slate-400" />
+                    <x-input-label for="desc" value="Deskripsi Barang" required class="dark:text-slate-400" />
                     <textarea name="desc"
                         class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm"
                         id=""></textarea>
@@ -172,7 +172,7 @@
                     </button>
                     <button type="submit"
                         class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none transition transform active:scale-95">
-                        Simpan Ruangan
+                        Simpan Barang
                     </button>
                 </div>
             </form>
