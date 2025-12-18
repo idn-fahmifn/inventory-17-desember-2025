@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50 dark:divide-slate-800">
-                            @foreach ($rooms as $room)
+                            {{-- @foreach ($rooms as $room)
                                 <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
                                     <td class="px-8 py-6">
                                         <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
@@ -43,7 +43,7 @@
                                     </td>
 
                                     <td class="px-8 py-6 text-right">
-                                        <a href="{{ route('room.show', $room->slug) }}"
+                                        <a href=""
                                             class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mx-2">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -53,7 +53,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>

@@ -52,9 +52,11 @@ class RoomController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Room $room)
+    public function show($param)
     {
-        //
+        $room = Room::where('slug', $param)->firstOrFail();
+        $user = User::where('is_admin', false)->get();
+        return view('room.detail', compact('room', 'user'));
     }
 
     /**
