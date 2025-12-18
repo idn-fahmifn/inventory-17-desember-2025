@@ -34,9 +34,7 @@
                             </svg>
                         </span>
                     </div>
-                    <div class="mt-4 flex items-center text-xs text-blue-100">
-                        <span class="bg-blue-400/30 px-2 py-1 rounded-md mr-2">92% Efisiensi</span>
-                    </div>
+                    
                 </div>
 
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center transition-all">

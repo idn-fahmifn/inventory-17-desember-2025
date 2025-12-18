@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -11,10 +13,10 @@ class DashboardController extends Controller
     {
 
         $stats = [
-            'total_assets' => 1248,
-            'good_condition' => 1102,
-            'needs_repair' => 146,
-            'locations_count' => 12,
+            'total_assets' => Item::count(),
+            'good_condition' => Item::where('condition', 'good')->count(),
+            'needs_repair' => Item::where('condition', 'maintenance')->count(),
+            'locations_count' => Room::count(),
         ];
 
         // Data Riwayat Pergerakan Dummy (Manual Collection)
