@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -70,9 +71,28 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, $param)
     {
-        //
+        $room = Room::where('slug', $param)->firstOrFail();
+        $data = Room::findOrFail($room->id);
+
+        $request->validate([
+            'room_name' => ['string', 'required', 'min:3', 'max:30'],
+            'room_code' => ['string', 'required', 'min:3', 'max:30', Rule::unique('rooms', 'room_code')],
+            'desc' => ['required'],
+            'user_id' => ['required', 'integer'],
+        ]);
+
+        $simpan = $request->all();
+        $simpan['slug'] = random_int(000,999).'-'.Str::slug($request->input('room_name'));
+
+        $data->update($simpan);
+
+        return redirect()->route('room.show', $data->slug)
+        ->with('success', 'Room Created');
+
+
+        
     }
 
     /**
