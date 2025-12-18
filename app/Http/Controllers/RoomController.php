@@ -78,7 +78,7 @@ class RoomController extends Controller
 
         $request->validate([
             'room_name' => ['string', 'required', 'min:3', 'max:30'],
-            'room_code' => ['string', 'required', 'min:3', 'max:30', Rule::unique('rooms', 'room_code')],
+            'room_code' => ['string', 'required', 'min:3', 'max:30', Rule::unique('rooms')->ignore($data->id) ],
             'desc' => ['required'],
             'user_id' => ['required', 'integer'],
         ]);
