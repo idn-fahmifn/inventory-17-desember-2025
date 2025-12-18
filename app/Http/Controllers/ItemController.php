@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Room;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
@@ -31,7 +33,45 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'item_name' => ['string', 'required', 'min:5', 'max:30'],
+            'item_code' => ['string', 'required', 'min:5', 'max:30', 'unique:items, item_code'],
+            'qty' => ['integer', 'required', 'min:0', 'max:100'],
+            'room_id' => ['integer', 'required'],
+            'condition' => ['required','in:good,maintenance,broken'],
+            'image' => ['file', 'required', 'mimes:png,jpg,jpeg,svg,heic', 'max:2048'],
+            'desc' => ['required'],
+        ]);
+
+        // maping nilai dari request
+        $simpan = [
+            'item_name' => $request->input('item_name'),
+            'qty' => $request->input('qty'),
+            'desc' => $request->input('desc'),
+            'room_id' => $request->input('room_id'),
+            'condition' => $request->input('condition'),
+            'item_code' => $request->input('item_code'),
+            'slug' => Str::slug($request->input('item_name')) . random_int(0000, 9999),
+        ];
+
+        // kondisi saat ada input file (image)
+
+        if ($request->hasFile('image')) {
+            $img = $request->file('image'); //file yang diupload dari form.
+            $path = 'public/images/items'; //tempat penyimpanan file yang diupload
+            $ext = $img->getClientOriginalExtension();
+            $name = 'item_' . Carbon::now('Asia/jakarta')->format('dmYhis') . '.' . $ext; //output : item_16122025173040.jpg
+            $simpan['image'] = $name; //nilai yang disimpan ke database
+
+            // simpan file ke folder storage
+            $img->storeAs($path, $name);
+        }
+
+        // simpan semua data di request ke database.
+        Item::create($simpan);
+
+        return redirect()->route('item.index')->with('success', 'Item created');
+
     }
 
     /**
