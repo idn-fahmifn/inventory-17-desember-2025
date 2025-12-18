@@ -14,9 +14,9 @@
                     </svg>
                 </button>
 
-                <button type="submit"
+                <button type="submit" onclick="return confirm('Yakin mau')"
                     class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-all duration-300 transform hover:scale-105">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"  viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2"
                             d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
@@ -30,6 +30,86 @@
 
     <div class="py-12 bg-[#F8FAFC] dark:bg-slate-950 min-h-screen transition-colors duration-500">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <div
+                class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-[0.2em] font-black bg-slate-50/50 dark:bg-slate-800/50">
+                                <th class="px-8 py-5">Detail Ruangan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50 dark:divide-slate-800">
+
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Nama Ruangan</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                        {{ $room->room_name }}</div>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Kode Ruangan</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                        {{ $room->room_code }}</div>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Penanggung Jawab</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                        {{ $room->user->name }}</div>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Deskripsi Ruangan</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                        {{ $room->desc }}</div>
+                                </td>
+                            </tr>
+
+                            {{-- @foreach ($rooms as $room)
+                                <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                    <td class="px-8 py-6">
+                                        <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                            {{ $room->room_name }}</div>
+                                        <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                            {{ $room->room_code }}</div>
+                                    </td>
+                                    <td class="px-8 py-6">
+                                        <span
+                                            class="text-sm text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg">
+                                            {{ $room->user->name }}
+                                        </span>
+                                    </td>
+
+                                    <td class="px-8 py-6 text-right">
+                                        <a href=""
+                                            class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mx-2">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
 
             <div
                 class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
