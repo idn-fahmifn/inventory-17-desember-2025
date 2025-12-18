@@ -104,12 +104,13 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('item.store') }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('item.update', $data->slug) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
+                @method('put')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="item_name" value="Nama Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_name" name="item_name" type="text" required :value="old('item_name')"
+                        <x-text-input id="item_name" name="item_name" type="text" required value="{{ $data->item_name }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="ex : Ruang Server" />
                         <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
@@ -117,7 +118,7 @@
 
                     <div>
                         <x-input-label for="item_code" value="Kode Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_code" name="item_code" type="text" required :value="old('item_code')"
+                        <x-text-input id="item_code" name="item_code" type="text" required value="{{ $data->item_code }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="KODE-01" />
                         <x-input-error :messages="$errors->get('item_code')" class="mt-2" />
@@ -127,7 +128,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="qty" value="Stok/Qty" class="dark:text-slate-400" />
-                        <x-text-input id="qty" name="qty" type="number" required :value="old('qty')"
+                        <x-text-input id="qty" name="qty" type="number" required value="{{ $data->qty }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl" />
                         <x-input-error :messages="$errors->get('qty')" class="mt-2" />
                     </div>
@@ -136,7 +137,7 @@
                         <x-input-label for="condition" value="Kondisi Barang" class="dark:text-slate-400" />
                         <select id="condition" name="condition" required
                             class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm">
-                            <option>Kondisi Barang</option>
+                            <option value="{{ $data->condition }}">{{ $data->condition }}</option>
                             <option value="good">Good</option>
                             <option value="maintenance">Maintenance</option>
                             <option value="broken">Broken</option>
@@ -149,7 +150,7 @@
                     <x-input-label for="room_id" value="Lokasi Penyimpanan" class="dark:text-slate-400" />
                     <select id="room_id" name="room_id" required
                         class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm">
-                        <option>Lokasi Penyimpanan</option>
+                        <option value="{{ $data->room_id }}">{{ $data->room->room_name }}</option>
                         @foreach ($room as $item)
                             <option value="{{ $item->id }}">{{ $item->room_name }}</option>
                         @endforeach
@@ -159,7 +160,7 @@
 
                 <div>
                     <x-input-label for="image" value="Gambar Barang" class="dark:text-slate-400" />
-                    <x-text-input id="image" name="image" type="file" required accept="image/*"
+                    <x-text-input id="image" name="image" type="file" accept="image/*"
                         class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl p-6 border"
                         placeholder="KODE-01" />
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
@@ -169,7 +170,7 @@
                     <x-input-label for="desc" value="Deskripsi Barang" required class="dark:text-slate-400" />
                     <textarea name="desc"
                         class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm"
-                        id=""></textarea>
+                        id="">{{ $data->desc }}</textarea>
                     <x-input-error :messages="$errors->get('desc')" class="mt-2" />
                 </div>
 
