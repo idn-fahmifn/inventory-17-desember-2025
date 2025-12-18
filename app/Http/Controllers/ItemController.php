@@ -149,8 +149,6 @@ class ItemController extends Controller
         $data->update($simpan);
         return redirect()->route('item.show', $data->slug)->with('success', 'Item created');
 
-
-
     }
 
     /**

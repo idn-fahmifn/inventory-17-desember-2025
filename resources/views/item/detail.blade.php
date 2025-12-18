@@ -58,9 +58,17 @@
                             <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
                                 <td class="px-8 py-4">
                                     <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
-                                        Kode Ruangan</div>
+                                        Kode Barang</div>
                                     <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
                                         {{ $data->item_code }}</div>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Stock / Qty</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
+                                        {{ $data->qty }}</div>
                                 </td>
                             </tr>
                             <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
@@ -71,6 +79,20 @@
                                         {{ $data->room->room_name }}</div>
                                 </td>
                             </tr>
+
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
+                                <td class="px-8 py-4">
+                                    <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
+                                        Kondisi</div>
+                                    <span
+                                        class="inline-flex items-center text-[10px] font-black uppercase tracking-widest {{ $data->condition === 'good' ? 'text-emerald-500' : ($data->condition === 'maintenance' ? 'text-amber-500' : 'text-rose-500') }}">
+                                        <span
+                                            class="w-2 h-2 rounded-full mr-2 animate-pulse {{ $data->condition === 'good' ? 'bg-emerald-500' : ($data->condition === 'maintenance' ? 'bg-amber-500' : 'bg-rose-500') }}"></span>
+                                        {{ $data->condition }}
+                                    </span>
+                                </td>
+                            </tr>
+
                             <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
                                 <td class="px-8 py-4">
                                     <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
@@ -79,6 +101,7 @@
                                         {{ $data->desc }}</div>
                                 </td>
                             </tr>
+
 
                         </tbody>
                     </table>
@@ -104,13 +127,15 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('item.update', $data->slug) }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('item.update', $data->slug) }}" enctype="multipart/form-data"
+                class="space-y-6">
                 @csrf
                 @method('put')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="item_name" value="Nama Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_name" name="item_name" type="text" required value="{{ $data->item_name }}"
+                        <x-text-input id="item_name" name="item_name" type="text" required
+                            value="{{ $data->item_name }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="ex : Ruang Server" />
                         <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
@@ -118,7 +143,8 @@
 
                     <div>
                         <x-input-label for="item_code" value="Kode Barang" class="dark:text-slate-400" />
-                        <x-text-input id="item_code" name="item_code" type="text" required value="{{ $data->item_code }}"
+                        <x-text-input id="item_code" name="item_code" type="text" required
+                            value="{{ $data->item_code }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="KODE-01" />
                         <x-input-error :messages="$errors->get('item_code')" class="mt-2" />
@@ -128,7 +154,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="qty" value="Stok/Qty" class="dark:text-slate-400" />
-                        <x-text-input id="qty" name="qty" type="number" required value="{{ $data->qty }}"
+                        <x-text-input id="qty" name="qty" type="number" required
+                            value="{{ $data->qty }}"
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl" />
                         <x-input-error :messages="$errors->get('qty')" class="mt-2" />
                     </div>
@@ -186,7 +213,7 @@
                 </div>
             </form>
 
-            
+
         </div>
     </x-modal>
 </x-app-layout>
