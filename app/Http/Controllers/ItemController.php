@@ -129,10 +129,9 @@ class ItemController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $old_path = 'public/images/items/'.$data->image;
+            $old_path = 'public/images/items/' . $data->image;
 
-            if($data->image && Storage::exists($old_path))
-            {
+            if ($data->image && Storage::exists($old_path)) {
                 Storage::delete($old_path);
             }
 
@@ -154,8 +153,19 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item)
+    public function destroy($param)
     {
-        //
+        $item = Item::where('slug', $param)->firstOrFail();
+        $data = Item::find($item->id);
+
+        $old_path = 'public/images/items/' . $data->image;
+        if ($data->image && Storage::exists($old_path)) {
+            Storage::delete($old_path);
+        }
+
+        $data->delete();
+
+        return redirect()->route('item.index')->with('success', 'Item Deleted');
+
     }
 }
