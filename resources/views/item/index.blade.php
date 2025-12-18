@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('item.store') }}" class="space-y-6">
+            <form method="post" action="{{ route('item.store') }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
