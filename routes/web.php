@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +16,9 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
 
     // route dashboard
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
+
+    Route::resource('room', RoomController::class);
+    Route::resource('item', ItemController::class);
 
 });
 
