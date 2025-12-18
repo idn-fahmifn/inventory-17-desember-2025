@@ -22,9 +22,7 @@
                             <tr
                                 class="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-[0.2em] font-black bg-slate-50/50 dark:bg-slate-800/50">
                                 <th class="px-8 py-5">Nama & Kode</th>
-                                <th class="px-8 py-5">Kategori</th>
-                                <th class="px-8 py-5 text-center">Total Aset</th>
-                                <th class="px-8 py-5">Status Kapasitas</th>
+                                <th class="px-8 py-5">Penanggung Jawab</th>
                                 <th class="px-8 py-5 text-right">Aksi</th>
                             </tr>
                         </thead>
@@ -33,37 +31,26 @@
                                 <tr class="group hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-colors">
                                     <td class="px-8 py-6">
                                         <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">
-                                            {{ $room->name }}</div>
+                                            {{ $room->room_name }}</div>
                                         <div class="text-xs text-slate-400 dark:text-slate-500 mt-0.5 tracking-wider">
-                                            {{ $room->code }}</div>
+                                            {{ $room->room_code }}</div>
                                     </td>
                                     <td class="px-8 py-6">
                                         <span
                                             class="text-sm text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg">
-                                            {{ $room->category }}
+                                            {{ $room->user->name }}
                                         </span>
                                     </td>
-                                    <td
-                                        class="px-8 py-6 text-center font-bold text-slate-700 dark:text-slate-300 text-sm">
-                                        {{ $room->total_assets }}
-                                    </td>
-                                    <td class="px-8 py-6">
-                                        <span
-                                            class="inline-flex items-center text-[10px] font-black uppercase tracking-widest {{ $room->status === 'Tersedia' ? 'text-emerald-500' : ($room->status === 'Terbatas' ? 'text-amber-500' : 'text-rose-500') }}">
-                                            <span
-                                                class="w-2 h-2 rounded-full mr-2 animate-pulse {{ $room->status === 'Tersedia' ? 'bg-emerald-500' : ($room->status === 'Terbatas' ? 'bg-amber-500' : 'bg-rose-500') }}"></span>
-                                            {{ $room->status }}
-                                        </span>
-                                    </td>
+
                                     <td class="px-8 py-6 text-right">
-                                        <button
+                                        <a href=""
                                             class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mx-2">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                             </svg>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
