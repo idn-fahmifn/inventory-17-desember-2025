@@ -163,10 +163,9 @@
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <h2 class="text-xl font-black text-slate-800 dark:text-white">
-                        Tambah Ruangan Baru
+                        Edit {{ $room->room_name }}
                     </h2>
-                    <p class="text-sm text-slate-400 dark:text-slate-500 mt-1">Daftarkan lokasi penyimpanan aset baru
-                        Anda.</p>
+                    <p class="text-sm text-slate-400 dark:text-slate-500 mt-1">Ubah data {{ $room->room_name }}</p>
                 </div>
                 <div class="p-3 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-500">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -176,12 +175,12 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('room.store') }}" class="space-y-6">
+            <form method="post" action="{{ route('room.update', $room->slug) }}" class="space-y-6">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <x-input-label for="room_name" value="Nama Ruangan" class="dark:text-slate-400" />
-                        <x-text-input id="room_name" name="room_name" type="text" required
+                        <x-text-input id="room_name" name="room_name" value="{{ $room->room_name }}" type="text" required
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="ex : Ruang Server" />
                         <x-input-error :messages="$errors->get('room_name')" class="mt-2" />
@@ -189,7 +188,7 @@
 
                     <div>
                         <x-input-label for="code" value="Kode Ruangan" class="dark:text-slate-400" />
-                        <x-text-input id="code" name="room_code" type="text" required
+                        <x-text-input id="code" name="room_code" value="{{ $room->room_code }}" type="text" required
                             class="mt-1 block w-full dark:bg-slate-800 dark:border-slate-700 rounded-xl"
                             placeholder="KODE-01" />
                         <x-input-error :messages="$errors->get('room_code')" class="mt-2" />
@@ -200,7 +199,7 @@
                     <x-input-label for="user_id" value="Penanggung Jawab" class="dark:text-slate-400" />
                     <select id="user_id" name="user_id" required
                         class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm">
-                        <option>Penanggung jawab</option>
+                        <option value="{{ $room->user_id }}">{{ $room->user->name }}</option>
                         @foreach ($user as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
@@ -212,7 +211,7 @@
                     <x-input-label for="desc" value="Deskripsi Ruangan" required class="dark:text-slate-400" />
                     <textarea name="desc"
                         class="mt-1 block w-full border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl shadow-sm"
-                        id=""></textarea>
+                        id="">{{ $room->desc }}</textarea>
                     <x-input-error :messages="$errors->get('desc')" class="mt-2" />
                 </div>
 
