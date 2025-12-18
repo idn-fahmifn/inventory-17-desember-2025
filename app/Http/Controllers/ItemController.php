@@ -35,7 +35,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'item_name' => ['string', 'required', 'min:5', 'max:30'],
-            'item_code' => ['string', 'required', 'min:5', 'max:30', 'unique:items, item_code'],
+            'item_code' => ['string', 'required', 'min:5', 'max:30', 'unique:items'],
             'qty' => ['integer', 'required', 'min:0', 'max:100'],
             'room_id' => ['integer', 'required'],
             'condition' => ['required','in:good,maintenance,broken'],
